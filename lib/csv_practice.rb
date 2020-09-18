@@ -28,18 +28,21 @@ end
 olympic_athletes = get_all_olympic_athletes("data/athlete_events.csv")
 
 def total_medals_per_team(data)
-
-  # This little test is not working.
-  # norway = []
-  # data.each do |athlete|
-  #   if athlete["Team"] = "Norway"
-  #     norway << athlete["Medal"] if athlete["Medal"] != "NA"
-  #   end
-  # end
-  # return norway
-
+  medals = Hash.new(0)
+  data.each do |athlete|
+    if athlete["Medal"] != "NA"
+      medals[athlete["Team"]] += 1
+    end
+  end
+  return medals
 end
 
-
-def get_all_gold_medalists(olympic_data)
+def get_all_gold_medalists(data)
+  gold_medals = []
+  data.each do |athlete|
+    if athlete["Medal"] == "Gold"
+      gold_medals << medals[athlete_hash["Name"]]
+    end
+  end
+  return gold_medals
 end
