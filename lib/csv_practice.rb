@@ -29,8 +29,8 @@ olympic_athletes = get_all_olympic_athletes("data/athlete_events.csv")
 
 def total_medals_per_team(data)
   medals = Hash.new(0)
-  data.each do |athlete|
-    if athlete["Medal"] != "NA"
+  data.select do |athlete|
+    athlete["Medal"] != "NA"
       medals[athlete["Team"]] += 1
     end
   end
@@ -38,11 +38,11 @@ def total_medals_per_team(data)
 end
 
 def get_all_gold_medalists(data)
-  gold_medals = []
+  gold_medalists = []
   data.each do |athlete|
     if athlete["Medal"] == "Gold"
-      gold_medals << medals[athlete_hash["Name"]]
+      gold_medalists << athlete
     end
   end
-  return gold_medals
+  return gold_medalists
 end
